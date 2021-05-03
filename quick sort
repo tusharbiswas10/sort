@@ -1,0 +1,74 @@
+#include <bits/stdc++.h>
+
+#define ll          long long int
+#define mod         1000000007
+#define endl        "\n"
+#define pb          push_back
+#define max2(a,b)   ((a<b)?b:a)
+#define max3(a,b,c) max2(max2(a,b),c)
+#define min2(a,b)   ((a>b)?b:a)
+#define min3(a,b,c) min2(min2(a,b),c)
+
+
+
+using namespace std;
+
+ll partition(ll inp[],ll l,ll r){
+
+	ll part=inp[r];
+	 ll start= l-1;
+
+	 for (int i = l; i < r; ++i)
+	 {
+	 	if(inp[i]<part){
+	 		start++;
+	 		swap(inp[start],inp[i]);
+	 	}
+	 }
+
+	 swap(inp[start+1],inp[r]);
+
+	 return start+1;
+	
+}
+
+
+void quicksort(ll inp[],ll l, ll r){
+	 
+	if(l<r){
+		ll p= partition(inp,l,r);
+		quicksort(inp,l,p-1);
+		quicksort(inp,p+1,r);
+		
+	}
+
+	
+}
+
+
+
+
+int main(){
+	ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+   
+    
+	ll n;
+	cin>>n;
+    ll vect[n];
+    for (int i = 0; i <= n-1; ++i)
+    {
+        cin>>vect[i];
+    }
+
+    quicksort(vect,0,n-1);
+ 
+ 	
+    for (int i = 0; i <= n-1; ++i)
+    {
+        cout<<vect[i]<<" ";
+    }
+    cout<<endl;
+    
+    return 0;
+}
